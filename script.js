@@ -51,7 +51,7 @@ Object.values(timetable).forEach(day => {
 // Initialize inputs
 function initInputs() {
     const container = document.getElementById('subjectInputs');
-    
+
     for (const subject in subjectTotals) {
         const div = document.createElement('div');
         div.className = 'subject-row';
@@ -69,7 +69,7 @@ function calculate() {
     resultsDiv.innerHTML = '<h2>Results</h2>';
 
     let allSafe = true;
-    
+
     for (const subject in subjectTotals) {
         const attended = parseInt(document.getElementById(subject).value) || 0;
         const total = subjectTotals[subject];
@@ -82,12 +82,12 @@ function calculate() {
         card.innerHTML = `
             <h3>${subject}</h3>
             <p>Attended: ${attended}/${total} (${percentage.toFixed(1)}%)</p>
-            ${percentage < goal ? 
-                `<p class="critical">⚠️ Attend ${needed} more classes to reach 75%</p>` : 
+            ${percentage < goal ?
+                `<p class="critical">⚠️ Attend ${needed} more classes to reach 75%</p>` :
                 `<p>✅ Safe (above 75%)</p>`
             }
         `;
-        
+
         if (percentage < goal) allSafe = false;
         resultsDiv.appendChild(card);
     }
